@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="view.css">
+    <title>Tabla de Respuestas</title>
+</head>
+<body>
+
+    <h1>Buscar Respuestas</h1>
+
+    <!-- Descripción -->
+    <p>Consulta las preguntas con sus respectivas respuestas a continuación:</p>
+
+
+
+    <!-- Tabla donde se mostrarán las respuestas -->
+    <table id="tablaRespuestas">
+        <thead>
+            <tr>
+                <th>PREGUNTAS Y RESPUESTAS    </th> 
+
+            </tr>
+            <tr><button id="bnt">buscar por nombre</button></tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se llenarán las respuestas dinámicamente -->
+        </tbody>
+    </table>
+
+    <!-- Botón para buscar respuestas -->
+    <button id="buscarBtn">Buscar respuestas</button>
+  
+    <!-- Enlace al archivo JavaScript (ajusta la ruta si es necesario) -->
+    <script src="view.js"></script>
+    <script>
+        document.getElementById('bnt').addEventListener('click', function() {
+            window.location.href = 'http://localhost:3000/ver_respuesta.html'; // Cambia la URL por la de tu página
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Respuestas de Usuarios</title>
+    <link rel="stylesheet" href="estiloverrespuesta.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Buscar Respuestas por Nombre</h1>
+        
+        <label for="nombreUsuario">Nombre del Usuario:</label>
+        <input type="text" id="nombreUsuario" placeholder="Escribe el nombre del usuario...">
+        <button id="buscarBtn">Buscar</button>
+
+        <table id="tablaRespuestas">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Pregunta</th>
+                    <th>Respuesta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Las respuestas se insertarán aquí -->
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="scrip_ver-respuesta.js"></script>
+</body>
+</html>
