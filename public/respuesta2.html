@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <title>Usuarios que Respondieron</title>
+</head>
+<body>
+    <header>
+        <img src="imagen/logon.png" alt="Logo" class="logo">
+        <form action="/logout" method="POST" style="display: inline;">
+            <button type="submit" class="logout">Cerrar sesión</button>
+        </form>
+    </header>
+    
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="registrar-admin.html">Crear Administradores</a></li>
+                <li><a href="respuesta.html">Todas las Respuestas</a></li>
+                <li><a href="respuesta2.html">Usuarios que Respondieron</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>Usuarios que Respondieron</h1>
+            <input type="text" id="search" placeholder="Buscar por nombre" onkeyup="filterUsers()">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody"></tbody>
+            </table>
+
+            <!-- Modal para mostrar respuestas -->
+            <div id="responseModal" style="display: none;">
+                <div>
+                    <span onclick="closeModal()" style="cursor:pointer;">&times; Cerrar</span>
+                    <div id="responseContent"></div>
+                </div>
+            </div>
+
+            <script>
+                let users = []; // Para almacenar la lista de usuarios
+
+                // Función para obtener usuarios de la API
+                async function fetchUsers() {
+                    const response = await fetch('/respuestas');
+                    users = await response.json();
+                    displayUsers(users);
+                }
+
+                // Función para mostrar usuarios en la tabla
+                function displayUsers(users) {
+                    const tbody = document.getElementById('userTableBody');
+                    tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
+                    users.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.nombre}</td>
+                            <td>${user.correo}</td>
+                            <td><button onclick="showResponses(${user.id})">Ver Respuestas</button></td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+
+                // Función para mostrar respuestas en un modal
+                async function showResponses(userId) {
+                    try {
+                        const response = await fetch(`/respuestas/${userId}`);
+                        
+                        if (!response.ok) {
+                            throw new Error('No se pudieron obtener las respuestas.');
+                        }
+
+                        const responses = await response.json();
+                        const responseContent = document.getElementById('responseContent');
+                        
+                        // Mostrar las respuestas directamente
+                        responseContent.innerHTML = `
+                            <p>P1: ${responses.p1 || 'No disponible'}</p>
+                            <p>P2: ${responses.p2 || 'No disponible'}</p>
+                            <p>P3: ${responses.p3 || 'No disponible'}</p>
+                            <p>P4: ${responses.p4 || 'No disponible'}</p>
+                            <p>P5: ${responses.p5 || 'No disponible'}</p>
+                            <p>P6: ${responses.p6 || 'No disponible'}</p>
+                            <p>P7: ${responses.p7 || 'No disponible'}</p>
+                            <p>P8: ${responses.p8 || 'No disponible'}</p>
+                            <p>P9: ${responses.p9 || 'No disponible'}</p>
+                            <p>P10: ${responses.p10 || 'No disponible'}</p>
+                            <p>P11: ${responses.p11 || 'No disponible'}</p>
+                            <p>P12: ${responses.p12 || 'No disponible'}</p>
+                            <p>P13: ${responses.p13 || 'No disponible'}</p>
+                            <p>P14: ${responses.p14 || 'No disponible'}</p>
+                            <p>P15: ${responses.p15 || 'No disponible'}</p>
+                            <p>P16: ${responses.p16 || 'No disponible'}</p>
+                            <p>P17: ${responses.p17 || 'No disponible'}</p>
+                            <p>P18: ${responses.p18 || 'No disponible'}</p>
+                        `;
+
+                        document.getElementById('responseModal').style.display = 'block';
+                    } catch (error) {
+                        console.error('Error al mostrar respuestas:', error);
+                        alert('Error al obtener las respuestas.');
+                    }
+                }
+
+                // Función para cerrar el modal
+                function closeModal() {
+                    document.getElementById('responseModal').style.display = 'none';
+                }
+
+                // Función para filtrar usuarios
+                function filterUsers() {
+                    const input = document.getElementById('search').value.toLowerCase();
+                    const filteredUsers = users.filter(user => user.nombre.toLowerCase().includes(input));
+                    displayUsers(filteredUsers);
+                }
+
+                // Cargar usuarios al cargar la página
+                window.onload = fetchUsers;
+            </script>
+        </main>
+    </div>
+</body>
+</html>

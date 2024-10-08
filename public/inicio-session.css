@@ -1,0 +1,111 @@
+/* Mantén el estilo del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-image: url("imagen/fondo.png");
+    background-size: cover;
+    background-position: center;
+}
+
+/* Barra superior */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 45px;
+    padding-top: 30px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-left: 150px;
+}
+
+header h6 {
+    font-size: 1.2em;
+    color: #000000;
+    margin: 0;
+    font-family: inherit;
+}
+
+.HOME h6, .CONSULTORIA h6, .EMPAQUE h6 {
+    color: #000000;
+    background-color: rgb(191, 212, 230);
+    padding: 5px 35px;
+    border-radius: 20px;
+    font-family: inherit;
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+}
+
+/* Centrar el login en el resto de la página */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px; /* Deja espacio debajo de la barra de navegación */
+}
+
+/* Estilo para el contenedor de inicio de sesión */
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center; /* Centra todos los elementos del formulario */
+}
+
+/* Encabezado del formulario de login */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Grupos de input dentro del formulario */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilo del botón de inicio de sesión */
+.input-group button {
+    width: 40%; /* Ajusta este valor para controlar el ancho del botón */
+    padding: 10px;
+    border: none;
+    background-color: #000000;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto; /* Esto centrará el botón dentro del contenedor */
+}
+
+.input-group button:hover {
+    background-color: #272927;
+}

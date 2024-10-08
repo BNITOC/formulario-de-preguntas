@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" type="text/css" href="inicio-session.css" />
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error) {
+                alert(decodeURIComponent(error)); // Muestra el mensaje de error
+            }
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="imagen/logo.png" alt="Logo">
+        </div>
+        <div class="menu">
+            <div class="HOME" onclick="window.location.href='index.html'">
+                <h6>HOME</h6>
+            </div>
+            <div class="CONSULTORIA" onclick="window.location.href='consultoria.html'">
+                <h6>CONSULTORÍA</h6>
+            </div>
+            <div class="EMPAQUE" onclick="window.location.href='empaque.html'">
+                <h6>EMPAQUE</h6>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+            <form action="/login" method="POST">
+                <div class="input-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+                <div class="input-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn">Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

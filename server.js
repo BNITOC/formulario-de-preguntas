@@ -1,156 +1,209 @@
 const express = require('express');
 const mysql = require('mysql');
-const path = require('path'); 
+const path = require('path');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const { body, validationResult } = require('express-validator');
+const dotenv = require('dotenv');
 
-const app = express();
-const port = 3000;
+dotenv.config();
 
-// Middleware para procesar formularios (application/x-www-form-urlencoded)
-app.use(express.urlencoded({ extended: true }));
+const app = express(); // Asegúrate de que esta línea esté presente
 
-// Middleware para procesar JSON (si es necesario)
+// Middleware para parsear el cuerpo de las solicitudes
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+// Configuración de la sesión
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'tu-secreto-aqui',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 // Conexión a la base de datos
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'formulario'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASS || '',
+  database: process.env.DB_NAME || 'formulario'
 });
 
-db.connect((err) => {
+db.connect(err => {
   if (err) {
-    console.error('Error al conectar a la base de datos:', err);
+    console.error('Error conectando a la base de datos:', err);
     return;
   }
-  console.log('Conectado a la base de datos MySQL');
+  console.log('Conectado a MySQL');
 });
 
-// Servir el archivo de registro en la ruta /registro
-app.get('/registro', (req, res) => {
-  res.sendFile(__dirname + '/public/registro.html');
+// Ruta principal
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Ruta para procesar el formulario
-app.post('/guardar', (req, res) => {
-  console.log('Datos recibidos del formulario:', req.body); // Verificar los datos recibidos
-
-  const { nombre, telefono, email, ...respuestas } = req.body;
-
-  if (!nombre || !telefono || !email) {
-    return res.status(400).send('Faltan campos obligatorios.');
+// Ruta para guardar datos
+app.post('/guardar', [
+  body('nombre').notEmpty().withMessage('Nombre es obligatorio'),
+  body('celular').notEmpty().withMessage('Celular es obligatorio'),
+  body('correo').isEmail().withMessage('Correo no válido')
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
 
-  // Inserta el usuario en la base de datos
-  const queryUsuario = 'INSERT INTO usuarios (nombre, telefono, email) VALUES (?, ?, ?)';
-  db.query(queryUsuario, [nombre, telefono, email], (err, result) => {
-    if (err) {
-      console.error('Error al insertar datos en la base de datos:', err);
-      return res.status(500).send('Error en el servidor.');
+  const { nombre, celular, correo, ...respuestas } = req.body;
+
+  const queryVerificarCorreo = 'SELECT * FROM usuarios WHERE correo = ?';
+  db.query(queryVerificarCorreo, [correo], (err, results) => {
+    if (err) return res.status(500).send('Error en el servidor.');
+
+    if (results.length > 0) {
+      return res.status(409).send('El correo electrónico ya está registrado.');
     }
 
-    const usuarioId = result.insertId;
+    const queryUsuario = 'INSERT INTO usuarios (nombre, celular, correo) VALUES (?, ?, ?)';
+    db.query(queryUsuario, [nombre, celular, correo], (err, result) => {
+      if (err) return res.status(500).send('Error en el servidor.');
 
-    // Prepara las respuestas para la base de datos
-    const respuestasArray = [
-      { pregunta: '¿Cuál es la necesidad principal de tu producto?', respuesta: req.body.p1 },
-      { pregunta: '¿Cuál es tu tipo de piel?', respuesta: req.body.p2 },
-      { pregunta: 'Tipo de producto (Maquillaje o Cuidado de la piel)', respuesta: req.body.p3 },
-      { pregunta: 'Consideraciones especiales:', respuesta: req.body.p4 },
-      { pregunta: '¿Cuál es el rango de edad de tus clientes?', respuesta: req.body.p5 },
-      { pregunta: '¿Quieres que tu producto sea sólido, líquido o semi-sólido?', respuesta: req.body.p6 },
-      { pregunta: 'Líquido', respuesta: req.body.p7 },
-      { pregunta: 'Semi-sólido', respuesta: req.body.p8 },
-      { pregunta: '¿Es relevante para ti que el producto sea vegano?', respuesta: req.body.p9 },
-      { pregunta: '¿Requieres alguna certificación?', respuesta: req.body.p10 },
-      { pregunta: '¿Qué tipo de textura te gustaría que tuviera tu producto?', respuesta: req.body.p11 },
-      { pregunta: '¿Qué viscosidad esperas del producto?', respuesta: req.body.p12 },
-      { pregunta: '¿Es importante para ti que el producto tenga absorción rápida en la piel?', respuesta: req.body.p13 },
-      { pregunta: '¿Quieres que tu producto tenga algún aroma?', respuesta: req.body.p14 },
-      { pregunta: 'Opciones de aroma (si elige "Sí")', respuesta: req.body.p15 },
-      { pregunta: '¿Tienes alguna preferencia en el color final de tu producto?', respuesta: req.body.p16 },
-      { pregunta: '¿Cuál es el tiempo de vida que proyectas para el producto?', respuesta: req.body.p17 },
-      { pregunta: 'Ingredientes que te gustaría evitar', respuesta: req.body.p18 }
-    ];
+      const usuarioId = result.insertId;
+      const queryRespuesta = `
+        INSERT INTO respuesta (usuario_id, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `;
 
-    // Filtrar respuestas vacías o no definidas
-    const valoresRespuestas = respuestasArray
-      .filter(r => r.respuesta) // Asegurarse de que la respuesta no esté vacía
-      .map(r => [usuarioId, r.pregunta, r.respuesta]);
+      const valoresRespuesta = [
+        usuarioId,
+        respuestas.p1 || null,
+        respuestas.p2 || null,
+        respuestas.p3 || null,
+        respuestas.p4 || null,
+        respuestas.p5 || null,
+        respuestas.p6 || null,
+        respuestas.p7 || null,
+        respuestas.p8 || null,
+        respuestas.p9 || null,
+        respuestas.p10 || null,
+        respuestas.p11 || null,
+        respuestas.p12 || null,
+        respuestas.p13 || null,
+        respuestas.p14 || null,
+        respuestas.p15 || null,
+        respuestas.p16 || null,
+        respuestas.p17 || null,
+        respuestas.p18 || null
+      ];
 
-    console.log('Valores para insertar en respuestas:', valoresRespuestas); // Verificar los valores que se van a insertar
-
-    // Inserta las respuestas en la base de datos
-    if (valoresRespuestas.length > 0) {
-      db.query('INSERT INTO respuestas (usuario_id, pregunta, respuesta) VALUES ?', [valoresRespuestas], (err) => {
+      db.query(queryRespuesta, valoresRespuesta, (err) => {
         if (err) {
           console.error('Error al insertar respuestas en la base de datos:', err);
           return res.status(500).send('Error en el servidor.');
         }
-        
-        // Redirige a la página de confirmación
-        res.redirect('/confirmacion.html');
+        res.redirect('/confirmacion.html'); // Redireccionar a la página de confirmación
       });
-    } else {
-      res.redirect('/confirmacion.html');
-    }
+    });
   });
 });
 
-app.get('/confirmacion', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'confirmacion.html'));
+// Ruta para iniciar sesión
+app.post('/login', [
+  body('correo').isEmail().withMessage('Correo no válido'),
+  body('contrasena').notEmpty().withMessage('Contraseña es obligatoria')
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { correo, contrasena } = req.body;
+  const query = 'SELECT * FROM administradores WHERE correo = ?';
+
+  db.query(query, [correo], (err, results) => {
+    if (err) return res.status(500).send('Error en el servidor.');
+
+    if (results.length === 0) {
+      console.log('Usuario no encontrado:', correo);
+      return res.redirect('/inicio-session.html.');
+    }
+
+    const usuario = results[0];
+
+    // Verificar la contraseña usando bcrypt
+    bcrypt.compare(contrasena, usuario.contrasena, (err, isMatch) => {
+      if (err) {
+        console.error('Error al verificar la contraseña:', err);
+        return res.status(500).send('Error en el servidor.');
+      }
+
+      if (!isMatch) {
+        console.log('Contraseña incorrecta para el usuario:', correo);
+        return res.redirect('/inicio-session.html.');
+      }
+
+      // Si las credenciales son correctas
+      req.session.usuarioId = usuario.id;
+      res.redirect('/admin.html'); // Redirigir a la página admin
+    });
+  });
 });
 
-// Servir archivos estáticos desde la carpeta public
-app.use(express.static('public'));
-
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor en ejecución en http://localhost:${port}`);
-});
-
-
-
-// Ruta para obtener todas las preguntas y respuestas
-// Ruta para obtener todas las preguntas y respuestas
-app.get('/obtener_todas_respuestas', (req, res) => {
+// Ruta para obtener las respuestas
+app.get('/respuestas', (req, res) => {
   const query = `
-      SELECT usuarios.nombre, usuarios.telefono, usuarios.email, respuestas.pregunta, respuestas.respuesta
-      FROM usuarios
-      JOIN respuestas ON usuarios.id = respuestas.usuario_id
+      SELECT r.id, u.nombre, u.correo, r.p1, r.p2, r.p3, r.p4, r.p5, r.p6, r.p7, r.p8, r.p9, r.p10, r.p11, r.p12, r.p13, r.p14, r.p15, r.p16, r.p17, r.p18
+      FROM respuesta r
+      JOIN usuarios u ON r.usuario_id = u.id
   `;
-
+  
   db.query(query, (err, results) => {
       if (err) {
-          console.error('Error al obtener todas las respuestas:', err);
+          console.error('Error al obtener las respuestas:', err);
           return res.status(500).send('Error en el servidor.');
       }
-      
-      // Enviar los resultados como JSON
       res.json(results);
   });
 });
 
 
-//ver respuesta en la hoja 
-// Ruta para obtener las respuestas de un usuario por su nombre
-app.get('/obtener_respuestas/:nombre', (req, res) => {
-  const nombreUsuario = req.params.nombre;
-
-  const query = `
-    SELECT usuarios.nombre, usuarios.telefono, usuarios.email, respuestas.pregunta, respuestas.respuesta 
-    FROM usuarios 
-    JOIN respuestas ON usuarios.id = respuestas.usuario_id
-    WHERE usuarios.nombre LIKE ?
-  `;
-
-  db.query(query, [`%${nombreUsuario}%`], (err, results) => {
-    if (err) {
-      console.error('Error al obtener respuestas:', err);
-      return res.status(500).send('Error en el servidor.');
-    }
-    
-    res.json(results); // Enviar los resultados como JSON
+// Ruta para obtener respuestas por ID de usuario
+app.get('/respuestas/:id', (req, res) => {
+  const userId = req.params.id;
+  const query = 'SELECT p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18 FROM respuesta WHERE usuario_id = ?';
+  
+  db.query(query, [userId], (err, results) => {
+      if (err) {
+          console.error('Error al obtener respuestas:', err);
+          return res.status(500).send('Error en el servidor.');
+      }
+      res.json(results[0]); // Asumiendo que solo habrá una fila por usuario
   });
+});
+
+
+// Middleware para verificar la sesión
+function verificarSesion(req, res, next) {
+  if (req.session.usuarioId) {
+      next(); // Si está autenticado, continuar
+  } else {
+      res.redirect('/'); // Si no, redirigir a la página de inicio
+  }
+}
+
+// Aplica el middleware a la ruta de cierre de sesión
+app.post('/logout', verificarSesion, (req, res) => {
+  req.session.destroy(err => {
+      if (err) {
+          console.error('Error al cerrar sesión:', err);
+          return res.status(500).send('Error en el servidor.');
+      }
+      res.redirect('/'); // Redirigir a la página de inicio después de cerrar sesión
+  });
+});
+
+// Iniciar el servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

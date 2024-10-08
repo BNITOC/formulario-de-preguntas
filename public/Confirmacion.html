@@ -24,12 +24,30 @@
         h1 {
             color: #4CAF50;
         }
+        button {
+            background-color: #4CAF50; /* Color de fondo */
+            border: none; /* Sin borde */
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Espaciado */
+            text-align: center; /* Alinear texto */
+            text-decoration: none; /* Sin subrayado */
+            display: inline-block; /* Mostrar como bloque en línea */
+            font-size: 16px; /* Tamaño de fuente */
+            margin-top: 20px; /* Margen superior */
+            cursor: pointer; /* Cambia el cursor al pasar el ratón */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+        button:hover {
+            background-color: #45a049; /* Color de fondo al pasar el ratón */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>¡Formulario Enviado Exitosamente!</h1>
         <p>Gracias por tu envío. Nos pondremos en contacto contigo pronto.</p>
+        <!-- Botón para volver a la página de inicio -->
+        <button onclick="window.location.href='index.html'">Volver a Inicio</button>
     </div>
 </body>
 </html>

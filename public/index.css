@@ -1,0 +1,134 @@
+/* Aplicar una fuente a toda la página */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el cuerpo cubra al menos el 100% de la altura de la ventana */
+    margin: 0;
+    background: linear-gradient(10deg, #000000, #307575); /* El gradiente que deseas */
+    background-attachment: fixed; /* Hace que el fondo se mantenga fijo mientras se desplaza */
+    background-size: cover; /* Asegura que el fondo cubra toda el área visible */
+    color: white;
+}
+
+/* Estilo para <h3> (por defecto, h3 no se usa en el HTML proporcionado) */
+h3 {
+    color: #ffffff;
+    margin-left: 220px;
+}
+
+/* Barra superior */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    padding-top: 30px;
+
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-left: 150px;
+    margin-top: none;
+}
+
+/* Estilo para <h6> en el <header> */
+header h6 {
+    font-size: 1.2em; /* Ajusta el tamaño de fuente según sea necesario */
+    color: #000000; /* Ajusta el color del texto */
+    margin: 0; /* Elimina márgenes predeterminados si es necesario */
+    font-family: inherit; /* Usa la misma fuente que el body */
+}
+
+/* Estilo para <h6> en .HOME, .CONSULTORIA y .EMPAQUE */
+.HOME h6, .CONSULTORIA h6, .EMPAQUE h6 {
+    color: #000000;
+    background-color: rgb(191, 212, 230);
+    padding: 5px 35px;
+    border-radius: 20px;
+    font-family: inherit; /* Usa la misma fuente que el body */
+}
+
+/* Estilo para el logo */
+.logo img {
+    width: 100px;
+    height: 100px;
+}
+.iniciar-sesion button {
+    padding: 10px 25px;
+    background-color:  rgb(191, 212, 230);
+    color: rgb(14, 11, 11);
+    font-family: inherit; 
+    border-radius: 20px;
+    
+}
+
+.cerrar-sesion button {
+    padding: 10px 25px;
+    background-color:  rgb(191, 212, 230);
+    color: rgb(14, 11, 11);
+    font-family: inherit; 
+    border-radius: 20px;
+    
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 35px; 
+    max-width: 1500px; 
+    margin: 0 auto; /* Asegúrate de que el contenedor esté centrado */
+    padding: 50px; /* Opcional: añade algo de espacio alrededor */
+}
+
+/* Estilo común para las etiquetas */
+.etiqueta1, .etiqueta2, .etiqueta3 {
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    color: #ffffff; 
+    border-radius: 8px; 
+    text-align: center; 
+}
+
+/* Etiqueta 1 */
+.etiqueta1 {
+    background-color: #ccc8c8; 
+    color: #000000; 
+    border: 1px solid #cccccc; 
+    flex: 1; /* Esto permite que .etiqueta1 crezca si es necesario */
+    min-width: 200px; /* Ajusta el mínimo ancho según sea necesario */
+}
+
+/* Etiqueta 2 */
+.etiqueta2 {
+    background-color: #ccc8c8; 
+    flex: 2; /* Esto permite que .etiqueta2 ocupe el doble de espacio comparado con .etiqueta1 */
+    min-width: 600px; /* Ajusta el mínimo ancho según sea necesario */
+    color: #000000;
+    
+}
+
+/* Etiqueta 3 */
+.etiqueta3 {
+    background-color: #ccc8c8; 
+    width: 20%; /* Esto hace que .etiqueta3 ocupe todo el ancho del contenedor */
+    color: #000;
+    margin-top: 15px; /* Añade espacio encima de .etiqueta3 */
+    min-width: 320px;
+    margin: calc(10px + -10px);
+
+  
+}
+
+img {
+    width: 290px;
+    height: 290px;
+}
+.borde{
+
+    color: #ccc8c8;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <title>Ver Respuestas</title>
+</head>
+<body>
+    <header>
+        <img src="imagen/logon.png" alt="Logo" class="logo">
+        <form action="/logout" method="POST" style="display: inline;">
+            <button type="submit" class="logout">Cerrar sesión</button>
+        </form>
+    </header>
+    
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="registrar-admin.html">Crear Administradores</a></li>
+                <li><a href="respuesta.html">Todas las Respuestas</a></li>
+                <li><a href="respuesta2.html">Usuarios que Respondieron</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>Ver Respuestas</h1>
+            <table class="respuesta-tabla">
+                <thead>
+                    <tr>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody id="respuestas-tbody">
+                    <!-- Las respuestas se cargarán aquí mediante JavaScript -->
+                </tbody>
+            </table>
+
+            <script>
+                async function cargarRespuestas() {
+                    try {
+                        const response = await fetch('/respuestas');
+                        if (!response.ok) throw new Error('Error al cargar las respuestas');
+    
+                        const respuestas = await response.json();
+                        const tbody = document.getElementById('respuestas-tbody');
+                        tbody.innerHTML = ''; // Limpiar el contenido anterior
+
+                        respuestas.forEach(respuesta => {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `<td><strong>ID:</strong> ${respuesta.id}</td>`;
+                            tbody.appendChild(tr);
+
+                            const nombre = document.createElement('tr');
+                            nombre.innerHTML = `<td><strong>Nombre:</strong> ${respuesta.nombre}</td>`;
+                            tbody.appendChild(nombre);
+
+                            const correo = document.createElement('tr');
+                            correo.innerHTML = `<td><strong>Correo:</strong> ${respuesta.correo}</td>`;
+                            tbody.appendChild(correo);
+
+                            for (let i = 1; i <= 18; i++) {
+                                const preguntaRespuesta = document.createElement('tr');
+                                preguntaRespuesta.innerHTML = `<td><strong>Pregunta ${i}:</strong> ${respuesta[`p${i}`]}</td>`;
+                                tbody.appendChild(preguntaRespuesta);
+                            }
+                        });
+                    } catch (error) {
+                        console.error('Error al cargar las respuestas:', error);
+                    }
+                }
+    
+                window.onload = cargarRespuestas;
+            </script>
+        </main>
+    </div>
+</body>
+</html>

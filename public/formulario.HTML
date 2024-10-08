@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="formulario.CSS" />
+    <title>formulario</title>
+  </head>
+  <body>
+    <header>
+     
+  
+        <div class="logo">
+            <img src="imagen/logon.png" alt="Logo">
+        </div>
+        <div class="menu">
+            <div class="HOME" onclick="window.location.href='index.html'">
+                <h6>HOME</h6>
+            </div>
+            <div class="CONSULTORIA" onclick="window.location.href='consultoria.html'">
+                <h6>CONSULTORÍA</h6>
+            </div>
+            <div class="EMPAQUE" onclick="window.location.href='empaque.html'">
+                <h6>EMPAQUE</h6>
+            </div>
+            <div class="iniciar-sesion">
+                <button onclick="window.location.href='inicio-session.html'">Iniciar Sesión</button>
+            </div>
+        </div>
+  
+    </header>
+    <form id="formularioGeneral">
+      <h1>formulario</h1>
+      <div class="container" id="bnt">
+        <section id="p1">
+          <h3>¿Cuál es la necesidad principal de tu producto?</h3>
+          <select name="p1" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Hidratación profunda">Hidratación profunda</option>
+            <option value="Control de acné">Control de acné</option>
+            <option value="Reducción de líneas de expresión">Reducción de líneas de expresión</option>
+            <option value="Protección solar">Protección solar</option>
+            <option value="Reducción de manchas y tono desigual">Reducción de manchas y tono desigual</option>
+            <option value="Reducción de poros">Reducción de poros</option>
+            <option value="Calmar irritaciones">Calmar irritaciones</option>
+            <option value="Aumento de luminosidad">Aumento de luminosidad</option>
+            <option value="Exfoliación suave">Exfoliación suave</option>
+            <option value="Protección contra la contaminación">Protección contra la contaminación</option>
+            <option value="Regeneración celular">Regeneración celular</option>
+            <option value="Reafirmante">Reafirmante</option>
+          </select>
+          
+        </section>
+
+        <section id="p2">
+          <h3>¿Cuál es tu tipo de piel?</h3>
+
+          <select name="p2">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Piel sensible">Piel sensible</option>
+            <option value="Piel seca">Piel seca</option>
+            <option value="Piel mixta">Piel mixta</option>
+            <option value="Piel con tendencia acneica">Piel con tendencia acneica</option>
+            <option value="Rosácea">Rosácea</option>
+            <option value="Dermatitis seborreica">Dermatitis seborreica</option>
+            <option value="Piel con manchas">Piel con manchas</option>
+            <option value="Piel madura">Piel madura</option>
+            <option value="Piel con tendencia a alergias">Piel con tendencia a alergias</option>
+          </select>
+          
+        </section>
+
+        <section id="p3">
+          <h3>Tipo de producto (Maquillaje o Cuidado de la piel):</h3>
+          <select name="p3">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Bases: Líquida, Polvo, Compacta, Stick">Bases: Líquida, Polvo, Compacta, Stick</option>
+            <option value="Correctores: Líquido, Crema, Stick">Correctores: Líquido, Crema, Stick</option>
+            <option value="Polvos: Compacto, Suelto, Translucido">Polvos: Compacto, Suelto, Translucido</option>
+            <option value="Sombras: Polvo, Crema, Líquido">Sombras: Polvo, Crema, Líquido</option>
+            <option value="Labiales: Barra, Líquido, Gloss, Mate, Satinado">Labiales: Barra, Líquido, Gloss, Mate, Satinado</option>
+            <option value="Pestañina: Volumen, Alargamiento, Waterproof">Pestañina: Volumen, Alargamiento, Waterproof</option>
+          </select>
+          
+        </section>
+
+        <section id="p4">
+          <h3>Consideraciones especiales:</h3>
+          <select id="consideraciones-especiales" name="p4" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Piel sensible">Piel sensible</option>
+            <option value="Acné">Acné</option>
+            <option value="Rosácea">Rosácea</option>
+            <option value="Piel seca">Piel seca</option>
+            <option value="Piel grasa">Piel grasa</option>
+          </select>
+        </section>
+        
+        <section id="p5">
+          <h3>¿Cuál es el rango de edad de tus clientes?</h3>
+          <select name="p5" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="15-25 años">15-25 años</option>
+            <option value="26-35 años">26-35 años</option>
+            <option value="36-45 años">36-45 años</option>
+            <option value="46-55 años">46-55 años</option>
+            <option value="56 años o más">56 años o más</option>
+          </select>
+        </section>
+        
+        <section id="p6">
+          <h3>¿Quieres que tu producto sea sólido, líquido o semi-sólido?</h3>
+          <h2>Sólido</h2>
+          <select name="p6" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Bálsamos">Bálsamos</option>
+            <option value="Mantecas">Mantecas</option>
+            <option value="Barras">Barras</option>
+            <option value="Stick (labial, desodorante)">Stick (labial, desodorante)</option>
+          </select>
+        </section>
+        
+        <section id="p7">
+          <h2>Líquido</h2>
+          <select name="p7" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Sérums">Sérums</option>
+            <option value="Cremas">Cremas</option>
+            <option value="Lociones">Lociones</option>
+            <option value="Aceites">Aceites</option>
+            <option value="Geles">Geles</option>
+            <option value="Tónicos">Tónicos</option>
+            <option value="Esencias">Esencias</option>
+            <option value="Brumas">Brumas</option>
+            <option value="Fluidos">Fluidos</option>
+            <option value="Emulsiones">Emulsiones</option>
+            <option value="Leches limpiadoras">Leches limpiadoras</option>
+            <option value="Desmaquillantes">Desmaquillantes</option>
+            <option value="Elixires">Elixires</option>
+            <option value="Agua micelar">Agua micelar</option>
+            <option value="Protectores solares líquidos">Protectores solares líquidos</option>
+          </select>
+        </section>
+        
+        <section id="p8">
+          <h2>Semi-sólido</h2>
+          <select name="p8" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Cremas espesas">Cremas espesas</option>
+            <option value="Ungüentos">Ungüentos</option>
+            <option value="Pomadas">Pomadas</option>
+            <option value="Gel-Crema">Gel-Crema</option>
+          </select>
+        </section>
+        
+        <section id="p9">
+          <h3>¿Es relevante para ti que el producto sea vegano?</h3>
+          <select name="p9" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+        </section>
+        
+        <section id="p10">
+          <h3>¿Requieres alguna certificación?</h3>
+          <select name="p10" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Certificación vegana">Certificación vegana</option>
+            <option value="Certificación cruelty-free">Certificación cruelty-free</option>
+            <option value="Certificación orgánica">Certificación orgánica</option>
+            <option value="Certificación ecológica">Certificación ecológica</option>
+            <option value="Certificación halal">Certificación halal</option>
+            <option value="Certificación kosher">Certificación kosher</option>
+            <option value="Certificación sin gluten">Certificación sin gluten</option>
+          </select>
+        </section>
+        
+        <section id="p11">
+          <h3>¿Qué tipo de textura te gustaría que tuviera tu producto?</h3>
+          <select name="p11" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Textura ligera y fluida">Textura ligera y fluida</option>
+            <option value="Textura cremosa">Textura cremosa</option>
+            <option value="Textura aceitosa">Textura aceitosa</option>
+            <option value="Textura gelificada">Textura gelificada</option>
+            <option value="Textura líquida y acuosa">Textura líquida y acuosa</option>
+            <option value="Textura aerosolizada">Textura aerosolizada</option>
+            <option value="Textura mousse">Textura mousse</option>
+            <option value="Textura espumosa">Textura espumosa</option>
+            <option value="Textura bálsamo">Textura bálsamo</option>
+            <option value="Textura manteca">Textura manteca</option>
+            <option value="Textura semi-sólida">Textura semi-sólida</option>
+          </select>
+        </section>
+        
+        <section id="p12">
+          <h3>¿Qué viscosidad esperas del producto?</h3>
+          <select name="p12" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Muy baja (como agua) - 1-5% viscosidad">Muy baja (como agua) - 1-5% viscosidad</option>
+            <option value="Baja (como leche) - 5-10% viscosidad">Baja (como leche) - 5-10% viscosidad</option>
+            <option value="Media (como un suero) - 10-25% viscosidad">Media (como un suero) - 10-25% viscosidad</option>
+            <option value="Alta (como una crema espesa) - 25-50% viscosidad">Alta (como una crema espesa) - 25-50% viscosidad</option>
+            <option value="Muy alta (como una pomada o ungüento) - 50-100% viscosidad">Muy alta (como una pomada o ungüento) - 50-100% viscosidad</option>
+          </select>
+        </section>
+        
+        <section id="p13">
+          <h3>¿Es importante para ti que el producto tenga absorción rápida en la piel?</h3>
+          <select name="p13" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+            <option value="No es relevante">No es relevante</option>
+          </select>
+        </section>
+        
+        <section id="p14">
+          <h3>¿Quieres que tu producto tenga algún aroma?</h3>
+          <select name="p14" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+            <option value="No es relevante">No es relevante</option>
+          </select>
+        </section>
+        
+        <section id="p15">
+          <h3>Opciones de aroma (si elige "Sí")</h3>
+          <select name="p15" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Floral (rosa, jazmín, lavanda, violeta, geranio)">Floral (rosa, jazmín, lavanda, violeta, geranio)</option>
+            <option value="Cítrico (limón, naranja, bergamota, toronja, mandarina)">Cítrico (limón, naranja, bergamota, toronja, mandarina)</option>
+            <option value="Herbal (menta, romero, eucalipto, salvia, tomillo)">Herbal (menta, romero, eucalipto, salvia, tomillo)</option>
+            <option value="Amaderado (sándalo, cedro, pino, vetiver, oud)">Amaderado (sándalo, cedro, pino, vetiver, oud)</option>
+            <option value="Dulce (vainilla, coco, miel, caramelo, almendra)">Dulce (vainilla, coco, miel, caramelo, almendra)</option>
+            <option value="Fresco (pepino, aloe vera, té verde, menta, pepino)">Fresco (pepino, aloe vera, té verde, menta, pepino)</option>
+            <option value="Exótico (patchouli, incienso, mirra, ámbar, oud)">Exótico (patchouli, incienso, mirra, ámbar, oud)</option>
+            <option value="Frutal (mango, fresa, frambuesa, mora, manzana)">Frutal (mango, fresa, frambuesa, mora, manzana)</option>
+          </select>
+        </section>
+        
+        <section id="p16">
+          <h3>¿Tienes alguna preferencia en el color final de tu producto?</h3>
+          <select name="p16" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Transparente">Transparente</option>
+            <option value="Blanco">Blanco</option>
+            <option value="Beige">Beige</option>
+            <option value="Rosa suave">Rosa suave</option>
+            <option value="Verde menta">Verde menta</option>
+            <option value="Azul claro">Azul claro</option>
+            <option value="Amarillo pálido">Amarillo pálido</option>
+            <option value="Morado lavanda">Morado lavanda</option>
+            <option value="Naranja coral">Naranja coral</option>
+            <option value="Rojo suave">Rojo suave</option>
+            <option value="Marrón claro">Marrón claro</option>
+          </select>
+        </section>
+        
+        <section id="p17">
+          <h3>¿Cuál es el tiempo de vida que proyectas para el producto?</h3>
+          <select name="p17" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Menos de 6 meses">Menos de 6 meses</option>
+            <option value="6-12 meses">6-12 meses</option>
+            <option value="12-18 meses">12-18 meses</option>
+            <option value="Más de 18 meses">Más de 18 meses</option>
+          </select>
+        </section>
+        
+        <section id="p18" value " Ingredientes que te gustaría evitar" >
+          <h3>Ingredientes que te gustaría evitar</h3>
+          <select name="p18" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Sin parabenos">Sin parabenos</option>
+            <option value="Sin sulfatos">Sin sulfatos</option>
+            <option value="Sin siliconas">Sin siliconas</option>
+            <option value="Sin fragancias artificiales">Sin fragancias artificiales</option>
+            <option value="Sin colorantes sintéticos">Sin colorantes sintéticos</option>
+          </select>
+        </section>
+        
+        <br />
+        <br />
+        <br />
+
+       
+        <button type="submit">Enviar</button>
+      </div>
+    </form>
+
+    <script>
+      document.getElementById('formularioGeneral').addEventListener('submit', function(event) {
+          event.preventDefault(); // Previene el envío por defecto del formulario
+    
+          // Obtiene los datos del formulario
+          const formData = new FormData(this);
+          const data = {};
+          formData.forEach((value, key) => {
+              data[key] = value;
+          });
+    
+          // Guarda los datos en localStorage
+          localStorage.setItem('formData', JSON.stringify(data));
+    
+          // Redirige a la página de registro
+          window.location.href = 'registro.html'; // Cambia la ruta si es necesario
+      });
+    </script>
+    
+  </body>
+</html>

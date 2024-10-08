@@ -1,0 +1,186 @@
+body {
+    font-family: Arial, sans-serif; /* O cualquier otra fuente de tu elección */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0; 
+
+}
+
+
+h3 {
+    color: #000000;
+    margin-left: 220px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    padding-top: 30px;
+
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-left: 150px;
+    margin-top: none;
+}
+
+
+header h6 {
+    font-size: 1.2em; /* Ajusta el tamaño de fuente según sea necesario */
+    color: #000000; /* Ajusta el color del texto */
+    margin: 0; /* Elimina márgenes predeterminados si es necesario */
+    font-family: inherit; /* Usa la misma fuente que el body */
+}
+
+/* Estilo para <h6> en .HOME, .CONSULTORIA y .EMPAQUE */
+.HOME h6, .CONSULTORIA h6, .EMPAQUE h6 {
+    color: #000000;
+    background-color: rgb(191, 212, 230);
+    padding: 5px 35px;
+    border-radius: 20px;
+    font-family: inherit; /* Usa la misma fuente que el body */
+}
+
+/* Estilo para el logo */
+.logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.iniciar-sesion button {
+    padding: 10px 25px;
+    background-color:  rgb(191, 212, 230);
+    color: rgb(14, 11, 11);
+    font-family: inherit; 
+    border-radius: 20px;
+    
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 35px; 
+    max-width: 1500px; 
+    margin: 0 auto; /* Asegúrate de que el contenedor esté centrado */
+    padding: 50px; /* Opcional: añade algo de espacio alrededor */
+}
+
+/* Estilo común para las etiquetas */
+.etiqueta1, .etiqueta2, .etiqueta3 {
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    color: #ffffff; 
+    border-radius: 8px; 
+    text-align: center; 
+}
+
+
+
+body {
+    background-color: rgb(217, 228, 233);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+img {
+    width: 100%; /* Hacer que la imagen ocupe el 100% del contenedor */
+    max-width: 750px; /* Máximo ancho de la imagen */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenedor {
+    width: 90%; /* Ajustar a 90% para que sea más flexible */
+    max-width: 300px; /* Máximo ancho del contenedor */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.busqueda {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.busqueda input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.imagen-perfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.informacion h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.profesion {
+    font-size: 14px;
+    color: gray;
+    margin: 4px 0 0;
+}
+
+/* Media Queries para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .contenedor {
+        width: 100%; /* Ocupa el 100% del ancho disponible */
+        padding: 10px; /* Reducir padding en pantallas pequeñas */
+    }
+
+    .imagen-perfil {
+        width: 40px;
+        height: 40px; /* Hacer la imagen de perfil más pequeña en pantallas pequeñas */
+    }
+
+    .informacion h2 {
+        font-size: 16px; /* Reducir el tamaño del texto en móviles */
+    }
+
+    .profesion {
+        font-size: 12px;
+    }
+}
+
+/* Media Queries para pantallas medianas (tabletas) */
+@media (max-width: 768px) {
+    .contenedor {
+        width: 80%;
+        max-width: 400px; /* Aumentar el tamaño máximo del contenedor para tabletas */
+    }
+
+    .imagen-perfil {
+        width: 45px;
+        height: 45px;
+    }
+}
