@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="consultoria.CSS" />
-    <title >consultoria</title> 
+    <link rel="stylesheet" type="text/css" href="consultoria.css" />
+    <title>Formulario</title>
+    <script>
+        function redirigir() {
+            window.location.href = 'formulario.html';
+        }
+    </script>
 </head>
 <body>
+
+    
     <header>
+     <div class="menu">
         <div class="logo">
-            <img src="imagen/logon.png" alt="Logo">
+            <img src="imagen/logo.png" alt="Logo">
         </div>
-        <div class="menu">
+        
             <div class="HOME" onclick="window.location.href='index.html'">
                 <h6>HOME</h6>
             </div>
@@ -21,18 +29,14 @@
             <div class="EMPAQUE" onclick="window.location.href='empaque.html'">
                 <h6>EMPAQUE</h6>
             </div>
-            <div class="iniciar-sesion">
-                <button onclick="window.location.href='inicio-session.html'">Iniciar Sesión</button>
+            <div class="iniciar-sesion" onclick="window.location.href='inicio-session.html'">
+                <H6>Iniciar Sesión</H6>
             </div>
-        </div>
+     </div>
     </header>
 
 
-
-
-    <h3>consultoria</h3>
-
-
+    
     <img src="imagen/consul.png" alt="consul">
     <div class="contenedor">
         <div class="busqueda">
@@ -66,8 +70,7 @@
             </div>
         </div>
     </div>
-    
-    
-    
+
+
 </body>
 </html>

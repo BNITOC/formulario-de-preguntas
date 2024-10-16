@@ -9,42 +9,69 @@ body {
     background-size: cover;
     background-position: center;
 }
-
-/* Barra superior */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 45px;
-    padding-top: 30px;
+    display: flex; /* Usar flexbox para el header */
+    align-items: center; /* Centrar verticalmente los elementos */
+    justify-content: center; /* Centra el contenido del header */
+    padding: 10px; /* Espaciado alrededor del header */
+    width: 100%; /* Asegura que el header ocupe todo el ancho */
 }
+.logo img {
+    width: 8vw; /* Ajusta según sea necesario */
+    height: auto; 
+}
+
 
 .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin-left: 150px;
+    display: flex; /* Usar flexbox para alinear el menú en una fila */
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+    margin-top: 20px; /* Espacio arriba del menú */
+    gap: 8px; /* Espacio entre los elementos del menú */
+    max-width: 1500px; /* Ajusta el ancho máximo del menú */
+    width: 100%; /* Asegura que el menú ocupe todo el ancho */
+    justify-content: center; /* Centra los elementos en el contenedor */
+    transform: translateX(-30px);
 }
 
+.menu div {
+    flex: 1 1 auto; /* Permite que los elementos crezcan y se encojan */
+    min-width: 100px; /* Ancho mínimo para los elementos */
+    text-align: center;
+}
+
+/* Estilo para <h6> en el <header> */
 header h6 {
-    font-size: 1.2em;
-    color: #000000;
-    margin: 0;
-    font-family: inherit;
+    font-size: 1.5em; /* Ajusta el tamaño de fuente según sea necesario */
+    color: #000000; /* Ajusta el color del texto */
+    margin: 0; /* Elimina márgenes predeterminados */
+    font-family: inherit; /* Usa la misma fuente que el body */
+    background-color: #dfdfdf;
 }
 
-.HOME h6, .CONSULTORIA h6, .EMPAQUE h6 {
+/* Estilo de los elementos del menú */
+.HOME h6, .CONSULTORIA h6, .EMPAQUE h6, .iniciar-sesion h6 {
     color: #000000;
-    background-color: rgb(191, 212, 230);
-    padding: 5px 35px;
-    border-radius: 20px;
-    font-family: inherit;
+    padding: 5px; /* Espacio dentro de los encabezados */
+    border-radius: 20px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    margin: 0; /* Elimina margen fijo */
 }
 
-.logo img {
-    width: 100px;
-    height: 100px;
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .menu {
+        gap: 5px; /* Reduce el espacio entre los elementos en pantallas pequeñas */
+    }
+
+    header h6 {
+        font-size: 1.2em; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 580px) {
+    header h6 {
+        font-size: 0.8em !important; /* Uso de !important para asegurar que se aplique */
+    }
 }
 
 /* Centrar el login en el resto de la página */

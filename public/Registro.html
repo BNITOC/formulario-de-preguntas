@@ -8,10 +8,27 @@
 </head>
 <body>
     <header>
-        <h1>Registro</h1>
-        <p>Por favor, completa tu registro para enviar el formulario.</p>
-    </header>
+     
   
+        <div class="logo">
+            <img src="imagen/logon.png" alt="Logo">
+        </div>
+        <div class="menu">
+            <div class="HOME" onclick="window.location.href='index.html'">
+                <h6>HOME</h6>
+            </div>
+            <div class="CONSULTORIA" onclick="window.location.href='consultoria.html'">
+                <h6>CONSULTORÍA</h6>
+            </div>
+            <div class="EMPAQUE" onclick="window.location.href='empaque.html'">
+                <h6>EMPAQUE</h6>
+            </div>
+            <div class="iniciar-sesion">
+                <button onclick="window.location.href='inicio-session.html'">Iniciar Sesión</button>
+            </div>
+        </div>
+  
+    </header>
     <form id="registroForm" method="POST" action="/guardar">
         <label for="name">Nombre completo:</label><br>
         <input type="text" id="name" name="nombre" placeholder="Nombre completo" required><br><br>
@@ -56,7 +73,7 @@
             .then(result => {
                 alert('Formulario enviado exitosamente');
                 localStorage.removeItem('formData');
-                window.location.href = '/confirmacion.html'; // Asegúrate de que este archivo exista
+                window.location.href = 'index.html'; // Asegúrate de que este archivo exista
             })
             .catch(error => {
                 console.error('Error:', error);

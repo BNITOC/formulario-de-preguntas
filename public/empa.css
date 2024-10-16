@@ -8,123 +8,70 @@ body {
     margin: 0; /* Asegúrate de eliminar márgenes predeterminados */
 
 }
-
-/* Estilo para <h3> (por defecto, h3 no se usa en el HTML proporcionado) */
-h3 {
-    color: #ffffff;
-    margin-left: 220px;
-}
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    padding-top: 30px;
-
+    display: flex; /* Usar flexbox para el header */
+    align-items: center; /* Centrar verticalmente los elementos */
+    justify-content: center; /* Centra el contenido del header */
+    padding: 10px; /* Espaciado alrededor del header */
+    width: 100%; /* Asegura que el header ocupe todo el ancho */
+}
+.logo img {
+    width: 8vw; /* Ajusta según sea necesario */
+    height: auto; 
 }
 
-.menu{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin-left: 150px;
-    margin-top: none;
+
+.menu {
+    display: flex; /* Usar flexbox para alinear el menú en una fila */
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+    margin-top: 20px; /* Espacio arriba del menú */
+    gap: 8px; /* Espacio entre los elementos del menú */
+    max-width: 1500px; /* Ajusta el ancho máximo del menú */
+    width: 100%; /* Asegura que el menú ocupe todo el ancho */
+    justify-content: center; /* Centra los elementos en el contenedor */
+    transform: translateX(-30px);
+}
+
+.menu div {
+    flex: 1 1 auto; /* Permite que los elementos crezcan y se encojan */
+    min-width: 100px; /* Ancho mínimo para los elementos */
+    text-align: center;
 }
 
 /* Estilo para <h6> en el <header> */
 header h6 {
-    font-size: 1.2em; /* Ajusta el tamaño de fuente según sea necesario */
+    font-size: 1.5em; /* Ajusta el tamaño de fuente según sea necesario */
     color: #000000; /* Ajusta el color del texto */
-    margin: 0; /* Elimina márgenes predeterminados si es necesario */
+    margin: 0; /* Elimina márgenes predeterminados */
     font-family: inherit; /* Usa la misma fuente que el body */
+    background-color: #dfdfdf;
 }
 
-/* Estilo para <h6> en .HOME, .CONSULTORIA y .EMPAQUE */
-.HOME h6, .CONSULTORIA h6, .EMPAQUE h6 {
+/* Estilo de los elementos del menú */
+.HOME h6, .CONSULTORIA h6, .EMPAQUE h6, .iniciar-sesion h6 {
     color: #000000;
-    background-color: rgb(191, 212, 230);
-    padding: 5px 35px;
-    border-radius: 20px;
-    font-family: inherit; /* Usa la misma fuente que el body */
+    padding: 5px; /* Espacio dentro de los encabezados */
+    border-radius: 20px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    margin: 0; /* Elimina margen fijo */
 }
 
-/* Estilo para el logo */
-.logo img {
-    width: 60px;
-    height: 60px;
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .menu {
+        gap: 5px; /* Reduce el espacio entre los elementos en pantallas pequeñas */
+    }
+
+    header h6 {
+        font-size: 1.2em; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
 }
 
-
-
-
-
-h3{
-
-    color: #000000;
-    margin-left: 220px;
+@media (max-width: 580px) {
+    header h6 {
+        font-size: 0.8em !important; /* Uso de !important para asegurar que se aplique */
+    }
 }
-
-
-body {
-    font-family: Arial, sans-serif; /* O cualquier otra fuente de tu elección */
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-image: url('imagen/emp.png');
-    background-size: cover; /* Hace que la imagen cubra todo el fondo */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif; /* Fuente predeterminada */
-
-}
-
-/* Estilo para <h3> (por defecto, h3 no se usa en el HTML proporcionado) */
-
-
-/* Barra superior */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
-
-/* Estilo para <h6> en el <header> */
-header h6 {
-    font-size: 1.2em; /* Ajusta el tamaño de fuente según sea necesario */
-    color: #000000; /* Ajusta el color del texto */
-    margin: 0; /* Elimina márgenes predeterminados si es necesario */
-    font-family: inherit; /* Usa la misma fuente que el body */
-}
-
-/* Estilo para <h6> en .HOME, .CONSULTORIA y .EMPAQUE */
-.HOME h6, .CONSULTORIA h6, .EMPAQUE h6 {
-    color: #000000;
-    background-color: rgb(191, 212, 230);
-    padding: 5px 35px;
-    border-radius: 20px;
-    font-family: inherit; /* Usa la misma fuente que el body */
-}
-
-/* Estilo para el logo */
-.logo img {
-    width: 60px;
-    height: 60px;
-}
-
-/* Estilo para el botón de iniciar sesión */
-.iniciar-sesion button {
-    padding: 10px 25px;
-    background-color:  rgb(191, 212, 230);
-    color: rgb(14, 11, 11);
-    font-family: inherit; 
-    border-radius: 20px;
-    
-}
-
 
 
 /* Estilos de la imagen (para cualquier imagen en el body) */

@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+
 }
 
 header {
@@ -21,8 +22,8 @@ header {
 }
 
 .logout {
-    background-color: #e74c3c; /* Rojo para el botón de cerrar sesión */
-    color: white;
+    background-color: #d33625; /* Rojo para el botón de cerrar sesión */
+    color: rgb(255, 255, 255);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -41,7 +42,7 @@ header {
 
 nav {
     width: 250px; /* Ancho del menú lateral */
-    background: #307575; /* Color de fondo del menú */
+    background: #eeeeee; /* Color de fondo del menú */
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
@@ -58,30 +59,32 @@ nav ul li {
 nav ul li a {
     display: block; /* Hacer que el enlace ocupe todo el ancho */
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 15px;
     border-radius: 5px;
     transition: background 0.3s;
 }
 
 nav ul li a:hover {
-    background: #2c8c8c; /* Color al pasar el mouse */
+    background: #312d2d; /* Color al pasar el mouse */
 }
 
 main {
     flex: 1; /* Ocupa el espacio restante */
     padding: 20px;
-    background-color: #f4f4f4; /* Color de fondo del área principal */
-    background: linear-gradient(10deg, #000000, #307575);
+    background-color: #ffffff; /* Color de fondo del área principal */
+    background: linear-gradient(10deg, #ffffff, #f3f3f3);
 }
 
 input[type="text"] {
     width: 30%; /* Ajustar ancho según tu preferencia */
     padding: 10px; /* Espaciado interno */
     margin-bottom: 20px; /* Espaciado debajo del campo de búsqueda */
-    border: 1px solid #918a8a; /* Borde */
+    border: 1px solid #f3e9e9; /* Borde */
     border-radius: 9px; /* Bordes redondeados */
     margin-left: 60px;
+    background-color: #ffffff;
+
 }
 
 table {
@@ -89,16 +92,58 @@ table {
     border-collapse: collapse; /* Colapsar bordes */
     margin-top: -18px; /* Margen superior */
     margin-left: 60px;
-
 }
+
 
 th, td {
     padding: 12px; /* Espaciado interno de celdas */
     text-align: center; /* Centrar texto en celdas */
     border: 1px solid #ccc; /* Borde */
     color: #000000;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
 }
+
+
+.th, td:hover {
+    background-color: #dddddd;
+}
+.ver-respuestas {
+    background-color: #6c757d; /* Color de fondo más profesional */
+    color: #000000; /* Color del texto blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Comportamiento de bloque en línea */
+    font-size: 16px; /* Tamaño de la fuente más grande */
+    font-family: 'Arial', sans-serif; /* Tipografía más limpia */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+    border-radius: 5px; /* Bordes redondeados más sutiles */
+    border: none; /* Sin borde */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para un efecto tridimensional */
+    transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+}
+
+.ver-respuestas:hover {
+    background-color: #f0f0f0;  /* Color de fondo al pasar el ratón */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
+}
+
+/* Estilo para filas de tabla al pasar el mouse */
+table tbody tr:hover {
+    background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+    cursor: pointer; /* Cambiar el cursor para indicar que es interactivo */
+}
+
+.btn-primary {
+    margin-top: 5px; /* Ajusta este valor según tu preferencia */
+}
+.form-group {
+    margin-bottom: 5px; /* Ajusta este valor según tu preferencia */
+}
+h2 {
+    text-align: center;
+}
+
 
 
 /* Estilos del modal */
@@ -129,6 +174,7 @@ th, td {
     color: #e74c3c; /* Color del botón de cerrar */
     float: right; /* Alinear a la derecha */
 }
+
 h3 {
     text-align: center;
     margin-top: 80px; /* Esto asegura que el título esté debajo del header */
@@ -140,8 +186,7 @@ h3 {
     margin: 20px auto;
     border-collapse: collapse;
     color: #000000;
-    background-color: #ccc
-    
+    background-color: #ffffff;
 }
 
 th, td {
@@ -151,17 +196,14 @@ th, td {
 }
 
 th {
-  
     color: rgb(0, 0, 0);
 }
 
 tr:nth-child(even) {
-
     color: #000000;
 }
 
 tr:nth-child(odd) {
-
     color: #000000;
 }
 
@@ -169,5 +211,9 @@ strong {
     color: #be6262; /* Destacar las etiquetas de las preguntas */
 }
 
-
-
+#search {
+    border: 2px solid #d3d3d3;
+    padding: 10px;
+    color: #000000;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}

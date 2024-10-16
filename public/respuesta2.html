@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="admin.css">
     <title>Usuarios que Respondieron</title>
 </head>
+
 <body>
+
     <header>
         <img src="imagen/logon.png" alt="Logo" class="logo">
         <form action="/logout" method="POST" style="display: inline;">
@@ -63,7 +65,8 @@
                         row.innerHTML = `
                             <td>${user.nombre}</td>
                             <td>${user.correo}</td>
-                            <td><button onclick="showResponses(${user.id})">Ver Respuestas</button></td>
+                            <td><button class="ver-respuestas" onclick="showResponses(${user.id})">Ver Respuestas</button></td>
+
                         `;
                         tbody.appendChild(row);
                     });

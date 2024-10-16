@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif; /* O cualquier otra fuente de tu elección */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0; /* Asegúrate de eliminar márgenes predeterminados */
+
+}
+
+header {
+    display: flex; /* Usar flexbox para el header */
+    align-items: center; /* Centrar verticalmente los elementos */
+    justify-content: center; /* Centra el contenido del header */
+    padding: 10px; /* Espaciado alrededor del header */
+    width: 100%; /* Asegura que el header ocupe todo el ancho */
+}
+.logo img,.logon img {
+    width: 8vw; /* Ajusta según sea necesario */
+    height: auto; 
+}
+
+
+.menu {
+    display: flex; /* Usar flexbox para alinear el menú en una fila */
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+    margin-top: 20px; /* Espacio arriba del menú */
+    gap: 8px; /* Espacio entre los elementos del menú */
+    max-width: 1500px; /* Ajusta el ancho máximo del menú */
+    width: 100%; /* Asegura que el menú ocupe todo el ancho */
+    justify-content: center; /* Centra los elementos en el contenedor */
+    transform: translateX(-30px);
+}
+
+.menu div {
+    flex: 1 1 auto; /* Permite que los elementos crezcan y se encojan */
+    min-width: 100px; /* Ancho mínimo para los elementos */
+    text-align: center;
+}
+
+/* Estilo para <h6> en el <header> */
+header h6 {
+    font-size: 1.5em; /* Ajusta el tamaño de fuente según sea necesario */
+    color: #000000; /* Ajusta el color del texto */
+    margin: 0; /* Elimina márgenes predeterminados */
+    font-family: inherit; /* Usa la misma fuente que el body */
+    background-color: #afafaf;
+}
+
+/* Estilo de los elementos del menú */
+.HOME h6, .CONSULTORIA h6, .EMPAQUE h6, .iniciar-sesion h6 {
+    color: #000000;
+    padding: 5px; /* Espacio dentro de los encabezados */
+    border-radius: 20px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    margin: 0; /* Elimina margen fijo */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .menu {
+        gap: 5px; /* Reduce el espacio entre los elementos en pantallas pequeñas */
+    }
+
+    header h6 {
+        font-size: 1.2em; /* Ajusta el tamaño de fuente en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 580px) {
+    header h6 {
+        font-size: 0.8em !important; /* Uso de !important para asegurar que se aplique */
+    }
+}
+
+
+
+/* Estilos de la imagen (para cualquier imagen en el body) */
+img {
+    width: 100%; /* Hacer que la imagen ocupe el 100% del contenedor */
+    max-width: 750px; /* Máximo ancho de la imagen */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}   
+
+/* Estilos del contenedor principal */
+.contenedor {
+    width: 90%; /* Ajustar a 90% para que sea más flexible */
+    max-width: 300px; /* Máximo ancho del contenedor */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Estilos del buscador */
+.busqueda {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.busqueda input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/* Estilos de los perfiles */
+.perfil {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.imagen-perfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.informacion h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.profesion {
+    font-size: 14px;
+    color: gray;
+    margin: 4px 0 0;
+}
+
+/* Media Queries para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .contenedor {
+        width: 100%; /* Ocupa el 100% del ancho disponible */
+        padding: 10px; /* Reducir padding en pantallas pequeñas */
+    }
+
+    .imagen-perfil {
+        width: 40px;
+        height: 40px; /* Hacer la imagen de perfil más pequeña en pantallas pequeñas */
+    }
+
+    .informacion h2 {
+        font-size: 16px; /* Reducir el tamaño del texto en móviles */
+    }
+
+    .profesion {
+        font-size: 12px;
+    }
+}
+
+/* Media Queries para pantallas medianas (tabletas) */
+@media (max-width: 768px) {
+    .contenedor {
+        width: 80%;
+        max-width: 400px; /* Aumentar el tamaño máximo del contenedor para tabletas */
+    }
+
+    .imagen-perfil {
+        width: 45px;
+        height: 45px;
+    }
+}

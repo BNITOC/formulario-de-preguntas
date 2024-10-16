@@ -14,6 +14,9 @@ const app = express(); // Asegúrate de que esta línea esté presente
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use('/node_modules', express.static('node_modules'));
+
+
 
 // Configuración de la sesión
 app.use(session({
@@ -101,7 +104,7 @@ app.post('/guardar', [
           console.error('Error al insertar respuestas en la base de datos:', err);
           return res.status(500).send('Error en el servidor.');
         }
-        res.redirect('/confirmacion.html'); // Redireccionar a la página de confirmación
+        res.redirect('/index.html'); // Redireccionar a la página de confirmación
       });
     });
   });
@@ -125,7 +128,7 @@ app.post('/login', [
 
     if (results.length === 0) {
       console.log('Usuario no encontrado:', correo);
-      return res.redirect('/inicio-session.html.');
+      return res.redirect('/inicio-session.html?error=correo'); // Redirige con error de correo
     }
 
     const usuario = results[0];
@@ -139,7 +142,7 @@ app.post('/login', [
 
       if (!isMatch) {
         console.log('Contraseña incorrecta para el usuario:', correo);
-        return res.redirect('/inicio-session.html.');
+        return res.redirect('/inicio-session.html?error=contrasena'); // Redirige con error de contraseña
       }
 
       // Si las credenciales son correctas
@@ -148,6 +151,54 @@ app.post('/login', [
     });
   });
 });
+
+
+
+// Ruta para registrar administradores
+app.post('/registrar-admin', [
+  body('correo').isEmail().withMessage('Correo no válido'),
+  body('contrasena').notEmpty().withMessage('La contraseña es obligatoria')
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { correo, contrasena } = req.body;
+
+  // Verificar si el correo ya está registrado
+  const queryVerificarCorreo = 'SELECT * FROM administradores WHERE correo = ?';
+  db.query(queryVerificarCorreo, [correo], async (err, results) => {
+      if (err) return res.status(500).send('Error en el servidor.');
+
+      if (results.length > 0) {
+          return res.status(409).send('El correo ya está registrado.');
+      }
+
+      // Encriptar la contraseña antes de guardar
+      const hashedPassword = await bcrypt.hash(contrasena, 10);
+
+      // Guardar el nuevo administrador
+      const queryInsertarAdmin = 'INSERT INTO administradores (correo, contrasena) VALUES (?, ?)';
+      db.query(queryInsertarAdmin, [correo, hashedPassword], (err) => {
+          if (err) return res.status(500).send('Error en el servidor.');
+          res.status(201).send('Administrador registrado exitosamente.');
+      });
+  });
+});
+
+// Ruta para obtener todos los administradores
+app.get('/administradores', (req, res) => {
+  const query = 'SELECT id, correo FROM administradores';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error al obtener administradores:', err);
+      return res.status(500).json({ error: 'Error en el servidor. Inténtalo más tarde.' });
+    }
+    res.json(results);
+  });
+});
+
 
 // Ruta para obtener las respuestas
 app.get('/respuestas', (req, res) => {
